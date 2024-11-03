@@ -1,0 +1,22 @@
+{
+  "name": "bluesky-large-thumbnails",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "webpack build --mode=\"production\"",
+    "dev": "webpack watch --mode=\"development\""
+  },
+  "keywords": [],
+  "author": "NEDuck",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chrome": "^0.0.278",
+    "copy-webpack-plugin": "^12.0.2",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.6.3",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4"
+  }
+}

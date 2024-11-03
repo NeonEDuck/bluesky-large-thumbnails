@@ -1,0 +1,22 @@
+{
+    "name": "Bluesky Large Thumbnails",
+    "description": "Enlarges the containers of single-media posts in Bluesky so images appear in full size without cropping.",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "icons": {
+        "16": "icon16.png",
+        "32": "icon32.png",
+        "64": "icon64.png",
+        "128": "icon128.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://bsky.app/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ]
+}
