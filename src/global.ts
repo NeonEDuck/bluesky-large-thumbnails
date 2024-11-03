@@ -1,4 +1,4 @@
-import { MutationObserverManager } from "./custom-mutation-observer";
+import { MutationObserverManager } from "./mutation-observer-manager";
 
 export type globalVariablesType = {
     debugPanel?: HTMLElement,
