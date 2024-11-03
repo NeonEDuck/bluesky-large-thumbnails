@@ -50,13 +50,24 @@ async function processMutation(mutation: MutationRecord) {
     }
 
     // Get element that resemble as a post
-    const post = mutation.addedNodes[0] as Node | undefined;
+    const element = mutation.addedNodes[0] as Node | undefined;
 
-    // Check if the node added is a post or not
-    if (!(post instanceof HTMLElement) || !post.matches(':has(> :first-child > div[data-testid^="feedItem-by"])')) {
+    // Check if the node added is a Element or not
+    if (!(element instanceof HTMLElement)) {
         return;
     }
 
+    // Check if the node added is a Post
+    if (element.matches(':has(> :first-child > div[data-testid^="feedItem-by"])')) {
+        processPostMutation(element);
+    }
+    // Check if the node added is a Page
+    else if (element.matches('.r-13awgt0.r-zchlnj[style*="display"]')) {
+        processPageMutation(element);
+    }
+}
+
+async function processPostMutation(post: HTMLElement) {
     const waitUntilImageExists = async () =>
         new Promise<HTMLImageElement>((resolve, reject) => {
             // Image selector
@@ -182,6 +193,16 @@ async function processMutation(mutation: MutationRecord) {
             'image source src': image.src.match('^https?:\/\/cdn\.bsky\.app\/img\/(.+?)\/.*$')?.[1] ?? 'unknown'
         });
         post.style.backgroundColor = 'rgb(44, 54, 66)';
+    }
+}
+
+async function processPageMutation(page: HTMLElement) {
+    // If the page's content was already loaded before, the post will be stored and won't trigger the addedNodes mutation.
+    // So here we query all the posts that was already loaded and process them.
+    const posts = [...page.querySelectorAll<HTMLElement>(':has(> :first-child > div[data-testid^="feedItem-by"])')];
+
+    for (const post of posts) {
+        processPostMutation(post);
     }
 }
 
