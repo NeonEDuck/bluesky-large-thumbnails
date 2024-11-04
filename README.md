@@ -4,7 +4,8 @@ Enlarges the containers of single-media posts in Bluesky so images appear in ful
 
 ## Installation
 
-- Not yet available in any web extension store
+- Chrome Web Store (TBA)
+- [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/bluesky-large-thumbnails/)
 
 ## How to Build
 
